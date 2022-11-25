@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -10,14 +11,14 @@ export class App extends Component {
     searchText: "",
   };
 
-  // componentDidMount() {
-  //   axios.get("https://api.github.com/users").then((response) => {
-  //     this.setState({ usersData: response.data });
-  //   });
-  // }
-
   searchUsers = (text) => {
-    this.setState({ searchText: text });
+    axios
+      .get(`https://api.github.com/search/users?q=${text}`)
+      .then((response) => {
+        this.setState({
+          usersData: response.data.items,
+        });
+      });
   };
 
   render() {

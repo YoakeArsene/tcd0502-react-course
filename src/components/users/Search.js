@@ -17,7 +17,7 @@ export class Search extends Component {
       alert("Input must not be empty ...");
       return;
     }
-    console.log(this.state.text);
+    this.props.searchUsers(this.state.text);
     this.setState({
       text: "",
     });

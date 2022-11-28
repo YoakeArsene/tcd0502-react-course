@@ -1,17 +1,10 @@
-import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const User = () => {
-  const [user, setUser] = useState({});
-
+const User = (props) => {
   const { loginId } = useParams();
-  const fetchData = async () => {
-    const response = await axios.get(`https://api.github.com/users/${loginId}`);
-    setUser(response.data);
-  };
   useEffect(() => {
-    fetchData();
+    props.getUser(loginId);
   }, []);
 
   const {
@@ -29,7 +22,7 @@ const User = () => {
     blog,
     webiste,
     public_gists,
-  } = user;
+  } = props.user;
 
   return (
     <div>

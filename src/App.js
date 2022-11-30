@@ -8,6 +8,7 @@ import NotFound from "./components/pages/NotFound";
 import Search from "./components/users/Search";
 import User from "./components/users/User";
 import Users from "./components/users/Users";
+import GithubState from "./context/github/githubState";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
@@ -31,30 +32,32 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Fragment>
-                <Search clearUsers={clearUsers} searchUsers={searchUsers} />
-                <Users usersData={usersData} />
-              </Fragment>
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/user/:loginId">
-              <User getUser={getUser} user={user} />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+    <GithubState>
+      <Router>
+        <div>
+          <Navbar />
+          <div className="container">
+            <Switch>
+              <Route exact path="/">
+                <Fragment>
+                  <Search clearUsers={clearUsers} searchUsers={searchUsers} />
+                  <Users usersData={usersData} />
+                </Fragment>
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+              <Route exact path="/user/:loginId">
+                <User getUser={getUser} user={user} />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </GithubState>
   );
 };
 

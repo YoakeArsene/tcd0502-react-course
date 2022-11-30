@@ -9,7 +9,7 @@ const getGithubUsers = (login) => {
 };
 
 const getGithubUser = (login) => {
-  return axiosClient.get(`/search/user?q=${login}`);
+  return axiosClient.get(`/users/${login}`);
 };
 
 export { getGithubUsers, getGithubUser };

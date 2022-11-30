@@ -11,14 +11,7 @@ import Users from "./components/users/Users";
 import GithubState from "./context/github/githubState";
 
 const App = () => {
-  const [usersData, setUsersData] = useState([]);
   const [user, setUser] = useState({});
-
-  const clearUsers = () => {
-    setUsersData([]);
-    setUser({});
-  };
-
   const getUser = async (loginId) => {
     const response = await axios.get(`https://api.github.com/users/${loginId}`);
     setUser(response.data);
@@ -33,7 +26,7 @@ const App = () => {
             <Switch>
               <Route exact path="/">
                 <Fragment>
-                  <Search clearUsers={clearUsers} />
+                  <Search />
                   <Users />
                 </Fragment>
               </Route>

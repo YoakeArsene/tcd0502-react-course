@@ -1,12 +1,8 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import About from "./components/pages/About";
-import NotFound from "./components/pages/NotFound";
-import Search from "./components/users/Search";
-import User from "./components/users/User";
-import Users from "./components/users/Users";
+import Main from "./components/layout/Main";
+import Navbar from "./components/layout/Navbar";
 import GithubState from "./context/github/githubState";
 
 const App = () => {
@@ -15,25 +11,7 @@ const App = () => {
       <Router>
         <div>
           <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/">
-                <Fragment>
-                  <Search />
-                  <Users />
-                </Fragment>
-              </Route>
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <Route exact path="/user/:loginId">
-                <User />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </div>
+          <Main />
         </div>
       </Router>
     </GithubState>
